@@ -1,0 +1,56 @@
+CREATE DATABASE bookstore_db;
+USE bookstore_db;
+
+
+CREATE TABLE books (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(100) NOT NULL,
+    author VARCHAR(100),
+    publisher VARCHAR(100),
+    year INT,
+    price DOUBLE NOT NULL,
+    quantity INT DEFAULT 0,
+    is_rentable BOOLEAN DEFAULT FALSE
+);
+
+
+CREATE TABLE customers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    phone VARCHAR(15)
+);
+
+
+INSERT INTO books (title, author, publisher, year, price, quantity, is_rentable)
+VALUES 
+('Java Programming', 'James Gosling', 'Pearson', 2015, 499.00, 10, TRUE),
+('Operating Systems', 'Silberschatz', 'Wiley', 2018, 699.00, 5, TRUE),
+('Data Structures', 'Mark Allen Weiss', 'Pearson', 2016, 599.00, 7, FALSE),
+('Database Systems', 'C.J. Date', 'Addison Wesley', 2012, 649.00, 3, FALSE);
+
+
+INSERT INTO customers (name, phone)
+VALUES ('Ravi Kumar', '9876543210');
+
+INSERT INTO transactions (book_id, customer_id, type, returned)
+VALUES (1, 1, 'RENT', FALSE);
+
+
+CREATE TABLE transactions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    book_id INT NOT NULL,
+    customer_id INT NOT NULL,
+    type ENUM('SELL', 'RENT') NOT NULL,
+    date DATE NOT NULL DEFAULT (CURRENT_DATE),
+    returned BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE CASCADE,
+    FOREIGN KEY (customer_id) REFERENCES customers(id) ON DELETE CASCADE
+);
+
+
+ALTER TABLE customers
+ADD COLUMN age INT;
+
+
+ALTER TABLE transactions
+ADD COLUMN payment_method VARCHAR(20);
