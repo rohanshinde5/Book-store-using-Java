@@ -54,3 +54,14 @@ ADD COLUMN age INT;
 
 ALTER TABLE transactions
 ADD COLUMN payment_method VARCHAR(20);
+
+CREATE TABLE books (
+    id INT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    author VARCHAR(255) NOT NULL,
+    publisher VARCHAR(255),
+    year INT,
+    price DOUBLE,
+    quantity INT
+);
+
