@@ -3,14 +3,13 @@ USE bookstore_db;
 
 
 CREATE TABLE books (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(100) NOT NULL,
-    author VARCHAR(100),
-    publisher VARCHAR(100),
+    id INT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    author VARCHAR(255) NOT NULL,
+    publisher VARCHAR(255),
     year INT,
-    price DOUBLE NOT NULL,
-    quantity INT DEFAULT 0,
-    is_rentable BOOLEAN DEFAULT FALSE
+    price DOUBLE,
+    quantity INT
 );
 
 
@@ -55,13 +54,5 @@ ADD COLUMN age INT;
 ALTER TABLE transactions
 ADD COLUMN payment_method VARCHAR(20);
 
-CREATE TABLE books (
-    id INT PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
-    author VARCHAR(255) NOT NULL,
-    publisher VARCHAR(255),
-    year INT,
-    price DOUBLE,
-    quantity INT
-);
+
 
